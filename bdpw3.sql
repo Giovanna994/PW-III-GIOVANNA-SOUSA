@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 02-Ago-2024 às 01:06
+-- Tempo de geração: 09-Ago-2024 às 01:58
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -18,44 +18,48 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `controleestoque`
+-- Banco de dados: `bdpw3`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `produtos`
+-- Estrutura da tabela `tbproduto`
 --
 
-CREATE TABLE `produtos` (
-  `Código` int(11) NOT NULL,
-  `DescrProduto` varchar(500) NOT NULL,
-  `TipUnitario` enum('Peça','Par','Unidade') NOT NULL,
-  `Fornecedor` varchar(200) NOT NULL,
-  `EstoqMin` int(100) NOT NULL,
-  `EstoqMax` int(100) NOT NULL,
-  `EstoqAtual` int(100) NOT NULL
+CREATE TABLE `tbproduto` (
+  `idProduto` int(11) NOT NULL,
+  `nomeProduto` varchar(200) DEFAULT NULL,
+  `preco` varchar(50) DEFAULT NULL,
+  `descricao` varchar(2000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `tbproduto`
+--
+
+INSERT INTO `tbproduto` (`idProduto`, `nomeProduto`, `preco`, `descricao`) VALUES
+(1, 'Bisc Polvilho Gogo, 80g', '5,99', 'Biscoito de Polvilho');
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices para tabela `produtos`
+-- Índices para tabela `tbproduto`
 --
-ALTER TABLE `produtos`
-  ADD PRIMARY KEY (`Código`);
+ALTER TABLE `tbproduto`
+  ADD PRIMARY KEY (`idProduto`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT de tabela `produtos`
+-- AUTO_INCREMENT de tabela `tbproduto`
 --
-ALTER TABLE `produtos`
-  MODIFY `Código` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `tbproduto`
+  MODIFY `idProduto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
