@@ -1,3 +1,25 @@
+<?php
+        include('conexao.php');
+
+        if (isset($_POST['Modificar'])) {
+
+            $idProduto = $_POST['idProduto'];
+            $nomeProduto = $_POST['nomeProduto'];
+            $preco = $_POST['preco'];
+            $descricao = $_POST['descricao'];
+        
+            $stmt = $conn->prepare("UPDATE `tbproduto` SET `nomeProduto` = :nomeProduto, `preco` = :preco, `descricao` = :descricao WHERE `idProduto` = :idProduto");
+        
+            $stmt->bindValue(':nomeProduto', $nomeProduto);
+            $stmt->bindValue(':preco', $preco);
+            $stmt->bindValue(':descricao', $descricao);
+            $stmt->bindValue(':idProduto', $idProduto);
+        
+            $stmt->execute();
+        } 
+
+    ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
