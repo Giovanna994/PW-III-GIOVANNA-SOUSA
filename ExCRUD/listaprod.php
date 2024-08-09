@@ -8,6 +8,10 @@
 </head>
 <body>
 
+<?php
+
+?>
+
 <table class="table table-striped">
     <thead>
         <tr>
@@ -15,14 +19,26 @@
             <th scope="col">Nome do Produto:</th>
             <th scope="col">Preço:</th>
             <th scope="col">Descrição do Produto:</th>
+            <button><a href="index.php">Voltar</a></button>
+
         </tr>
   </thead>
 
     <?php
-        include('conexao.php')
+    include("conexao.php");
 
-        $stmt = $conn->prepare("select * from tbproduto");
-        $stmt->execute(); 
+    $stmt = $conn->prepare("SELECT * FROM tbproduto");
+    $stmt->execute(); 
+
+    while($row = $stmt->fetch()) {
+        echo "<tr>";                               
+            echo "<th scope='row'> $row[idProduto] </th>";                
+            echo "<td> $row[nomeProduto] </td>";
+            echo "<td> $row[preco] </td>";
+            echo "<td> $row[descricao] </td>";
+        echo "</tr>";
+    }
+
     ?>
 
 </table>  
