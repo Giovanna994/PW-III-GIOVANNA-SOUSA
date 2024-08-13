@@ -19,41 +19,36 @@
             $descricao = $_POST['descricao'];
         
             $stmt = $conn->prepare("UPDATE `tbproduto` SET `nomeProduto` = :nomeProduto, `preco` = :preco, `descricao` = :descricao WHERE `idProduto` = :idProduto");
-        
-            $stmt->bindValue(':nomeProduto', $nomeProduto);
-            $stmt->bindValue(':preco', $preco);
-            $stmt->bindValue(':descricao', $descricao);
-            $stmt->bindValue(':idProduto', $idProduto);
-        
+
             $stmt->execute();
         } 
 
     ?>
 
-<form action="modificarprod.php" method="POST">
+    <form action="modificarprod.php" method="POST">
 
-    <input type="hidden" name="idProduto" value="<?php echo isset($_GET['idProduto']) ? $_GET['idProduto'] : ''; ?>">
+        <input type="hidden" name="idProduto" value="<?php echo isset($_GET['idProduto']) ? $_GET['idProduto'] : ''; ?>">
 
-    <div>
-        <label>Nome do Produto: </label>
-        <input type="text" name="nomeProduto">
-    </div>
+        <div>
+            <label>Nome do Produto: </label>
+            <input type="text" name="nomeProduto">
+        </div>
 
-    <div>
-        <label>Preço:</label>
-        <input type="text" name="preco">
-    </div>
+        <div>
+            <label>Preço:</label>
+            <input type="text" name="preco">
+        </div>
 
-    <div>
-        <label>Descrição:</label>
-        <input type="text" name="descricao">
-    </div>
+        <div>
+            <label>Descrição:</label>
+            <input type="text" name="descricao">
+        </div>
 
-    <div>
-        <button type="submit" name="Modificar">Modificar</button>
-    </div>
+        <div>
+            <button type="submit" name="Modificar">Modificar</button>
+        </div>
 
-</form>
+    </form>
     
 </body>
 </html>

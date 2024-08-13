@@ -1,36 +1,14 @@
-<?php
-        include('conexao.php');
-
-        if (isset($_POST['Modificar'])) {
-
-            $idProduto = $_POST['idProduto'];
-            $nomeProduto = $_POST['nomeProduto'];
-            $preco = $_POST['preco'];
-            $descricao = $_POST['descricao'];
-        
-            $stmt = $conn->prepare("UPDATE `tbproduto` SET `nomeProduto` = :nomeProduto, `preco` = :preco, `descricao` = :descricao WHERE `idProduto` = :idProduto");
-        
-            $stmt->bindValue(':nomeProduto', $nomeProduto);
-            $stmt->bindValue(':preco', $preco);
-            $stmt->bindValue(':descricao', $descricao);
-            $stmt->bindValue(':idProduto', $idProduto);
-        
-            $stmt->execute();
-        } 
-
-    ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Excluir Produtos</title>
+    <title>Modificar Produtos</title>
 </head>
 <body>
 
-    <h1>Excluir Produtos</h1>
+    <h1>Modificar Produtos</h1>
 
     <table class="table table-striped">
         <thead>
@@ -47,7 +25,7 @@
     <?php
     include("conexao.php");
 
-    $stmt = $conn->prepare("SELECT * FROM tbproduto");
+    $stmt = $conn->prepare("SELECT * FROM tbproduto" );
     $stmt->execute(); 
 
     while($row = $stmt->fetch()) {
@@ -59,7 +37,7 @@
         echo "</tr>";
 
         echo "<td>";
-            echo "<a href='modificar.php?id=$row[idProduto]'> Modificar </a>";
+            echo "<a href='modificar.php?idProduto=$row[idProduto]'> Modificar </a>";
         echo "</td>";
     }
 
