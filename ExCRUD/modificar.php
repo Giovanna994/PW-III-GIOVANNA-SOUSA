@@ -12,20 +12,26 @@
         include('conexao.php');
 
         if (isset($_POST['Modificar'])) {
-        
             $idProduto = $_POST['idProduto'];
             $nomeProduto = $_POST['nomeProduto'];
             $preco = $_POST['preco'];
             $descricao = $_POST['descricao'];
         
             $stmt = $conn->prepare("UPDATE `tbproduto` SET `nomeProduto` = :nomeProduto, `preco` = :preco, `descricao` = :descricao WHERE `idProduto` = :idProduto");
-
-            $stmt->execute();
-        } 
-
+            $stmt->bindParam(':nomeProduto', $nomeProduto);
+            $stmt->bindParam(':preco', $preco);
+            $stmt->bindParam(':descricao', $descricao);
+            $stmt->bindParam(':idProduto', $idProduto, PDO::PARAM_INT);
+        
+            if ($stmt->execute()) {
+                echo "Produto atualizado com sucesso!";
+            } else {
+                echo "Erro ao atualizar produto: " . $stmt->errorInfo()[2];
+            }
+        }
     ?>
 
-    <form action="modificarprod.php" method="POST">
+    <form action="" method="POST">
 
         <input type="hidden" name="idProduto" value="<?php echo isset($_GET['idProduto']) ? $_GET['idProduto'] : ''; ?>">
 
@@ -48,6 +54,9 @@
             <button type="submit" name="Modificar">Modificar</button>
         </div>
 
+        <div>
+            <button> <a href="modificarprod.php">Voltar</a></button>
+        </div>
     </form>
     
 </body>
