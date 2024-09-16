@@ -1,0 +1,6 @@
+Passo a passo para usar o NodeJs:
+1 . npm install -g pnpm
+2 . npx create-next-app@latest nextjs-dashboard -g pnpm
+3 . cd nextjs-dashboard
+4 . npm run build
+5 . npm run dev : para iniciar o projeto no http://localhost:3000/
